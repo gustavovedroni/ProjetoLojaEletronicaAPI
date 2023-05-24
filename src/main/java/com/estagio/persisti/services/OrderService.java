@@ -1,10 +1,8 @@
 package com.estagio.persisti.services;
 
 import com.estagio.persisti.entities.Order;
-import com.estagio.persisti.entities.Order;
-import com.estagio.persisti.repositories.OrderRepository;
+import com.estagio.persisti.entities.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

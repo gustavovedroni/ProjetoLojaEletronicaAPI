@@ -1,4 +1,4 @@
-package com.estagio.persisti.resources;
+package com.estagio.persisti.controllers;
 
 import com.estagio.persisti.entities.Product;
 import com.estagio.persisti.services.ProductService;
@@ -44,6 +44,5 @@ public class ProductResource {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
-
 
 }

@@ -1,7 +1,7 @@
 package com.estagio.persisti.services;
 
 import com.estagio.persisti.entities.Category;
-import com.estagio.persisti.repositories.CategoryRepository;
+import com.estagio.persisti.entities.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

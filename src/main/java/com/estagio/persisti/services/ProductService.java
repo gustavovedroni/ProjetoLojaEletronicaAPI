@@ -1,7 +1,7 @@
 package com.estagio.persisti.services;
 
 import com.estagio.persisti.entities.Product;
-import com.estagio.persisti.repositories.ProductRepository;
+import com.estagio.persisti.entities.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +21,7 @@ public class ProductService {
         Product existingProduct = findById(id);
         existingProduct.setName(product.getName());
         existingProduct.setDescription(product.getDescription());
-        existingProduct.setPrece(product.getPrece());
+        existingProduct.setPrice(product.getPrice());
         return repository.save(existingProduct);
     }
 

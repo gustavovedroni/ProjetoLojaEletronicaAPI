@@ -1,4 +1,4 @@
-package com.estagio.persisti.repositories;
+package com.estagio.persisti.entities.repositories;
 
 import com.estagio.persisti.entities.Order;
 import com.estagio.persisti.entities.User;

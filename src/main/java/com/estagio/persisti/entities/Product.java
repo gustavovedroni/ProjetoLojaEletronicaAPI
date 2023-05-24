@@ -1,35 +1,50 @@
 package com.estagio.persisti.entities;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_product")
 public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String description;
-    private Double prece;
+    private Double price;
     private String imgUrl;
 
     @ManyToMany
     @JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 
+    @OneToMany(mappedBy = "id.product")
+    private Set<OrderItem> items = new HashSet<>();
+
     public Product() {
     }
 
-    public Product(Long id, String name, String description, Double prece, String imgUrl) {
+    public Product(Long id, String name, String description, Double price, String imgUrl) {
+        super();
         this.id = id;
         this.name = name;
         this.description = description;
-        this.prece = prece;
+        this.price = price;
         this.imgUrl = imgUrl;
     }
 
@@ -57,12 +72,12 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-    public Double getPrece() {
-        return prece;
+    public Double getPrice() {
+        return price;
     }
 
-    public void setPrece(Double prece) {
-        this.prece = prece;
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     public String getImgUrl() {
@@ -75,6 +90,15 @@ public class Product implements Serializable {
 
     public Set<Category> getCategories() {
         return categories;
+    }
+
+    @JsonIgnore
+    public Set<Order> getOrders() {
+        Set<Order> set = new HashSet<>();
+        for (OrderItem x : items) {
+            set.add(x.getOrder());
+        }
+        return set;
     }
 
     @Override
