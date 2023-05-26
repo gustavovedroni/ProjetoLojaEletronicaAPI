@@ -1,6 +1,7 @@
 package com.estagio.persisti.services;
 
 import com.estagio.persisti.entities.Category;
+import com.estagio.persisti.entities.Product;
 import com.estagio.persisti.entities.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,5 +22,9 @@ public class CategoryService {
     public Category findById(Long id) {
         Optional<Category> obj = repository.findById(id);
         return obj.get();
+    }
+
+    public Category create(Category category) {
+        return repository.save(category);
     }
 }

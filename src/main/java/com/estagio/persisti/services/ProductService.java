@@ -14,8 +14,14 @@ public class ProductService {
     @Autowired
     private ProductRepository repository;
     public Product create(Product product) {
+        // Verificar se o produto já existe no banco de dados
+        if (repository.existsByName(product.getName())) {
+            throw new RuntimeException("Produto já cadastrado");
+        }
+
         return repository.save(product);
     }
+
 
     public Product update(Long id, Product product) {
         Product existingProduct = findById(id);

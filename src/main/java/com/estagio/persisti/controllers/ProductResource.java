@@ -29,9 +29,14 @@ public class ProductResource {
 
     @PostMapping
     public ResponseEntity<Product> create(@RequestBody Product product) {
-        Product createdProduct = service.create(product);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdProduct);
+        try {
+            Product createdProduct = service.create(product);
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdProduct);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
     }
+
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<Product> update(@PathVariable Long id, @RequestBody Product product) {
